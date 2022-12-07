@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: dogart-api
+  profiles:
+    active: dev

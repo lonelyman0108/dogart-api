@@ -1,0 +1,17 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: dogart-api
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/dog?serverTimezone=UTC
+    username: root
+    password: 123456
+    druid:
+      initial-size: 5
+      min-idle: 5
+      maxActive: 20
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000

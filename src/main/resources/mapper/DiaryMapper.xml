@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="site.lonelyman.dogart.api.mapper.DiaryMapper">
+    <select id="getRandDiary" resultType="site.lonelyman.dogart.api.entity.Diary">
+        select *
+        from diary
+        where flag = 1
+        order by rand()
+        limit 1
+    </select>
+</mapper>
