@@ -15,6 +15,9 @@ spring:
       maxWait: 60000
       timeBetweenEvictionRunsMillis: 60000
       minEvictableIdleTimeMillis: 300000
+  web:
+    resources:
+      static-locations: classpath:/static/
 jwt:
   secret: p4aYscWKd4fzB4
   expiration: 86400
