@@ -33,7 +33,7 @@ public class DiaryServiceImpl extends ServiceImpl<DiaryMapper, Diary>
     @Override
     public void postDiary(DiaryPostReq req) {
         Diary diary = new Diary();
-        diary.setContent(req.getContext());
+        diary.setContent(req.getContent());
         diary.setCreateDate(new Date());
         diary.setFlag(0);
         this.save(diary);

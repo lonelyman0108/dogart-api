@@ -14,6 +14,6 @@ import lombok.Data;
 @Data
 public class DiaryPostReq {
 
-    private String context;
+    private String content;
 
 }

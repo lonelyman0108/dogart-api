@@ -13,6 +13,6 @@ import lombok.Data;
 @Data
 public class WordsPostReq {
 
-    private String context;
+    private String content;
 
 }

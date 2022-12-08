@@ -34,7 +34,7 @@ public class WordsServiceImpl extends ServiceImpl<WordsMapper, Words>
     @Override
     public void postWords(WordsPostReq req) {
         Words words = new Words();
-        words.setContent(req.getContext());
+        words.setContent(req.getContent());
         words.setCreateDate(new Date());
         words.setFlag(0);
         this.save(words);
