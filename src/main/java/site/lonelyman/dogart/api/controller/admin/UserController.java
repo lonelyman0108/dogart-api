@@ -1,5 +1,7 @@
 package site.lonelyman.dogart.api.controller.admin;
 
+import cn.dev33.satoken.annotation.SaCheckLogin;
+import cn.dev33.satoken.stp.StpUtil;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,6 +27,13 @@ public class UserController {
     @PostMapping("login")
     public Result<Object> login(@RequestBody UserLoginReq req) {
         userService.login(req.getUsername(), req.getPassword());
+        return Result.ok();
+    }
+
+    @PostMapping("logout")
+    @SaCheckLogin
+    public Result<Object> logout() {
+        StpUtil.logout();
         return Result.ok();
     }
 }

@@ -3,6 +3,7 @@ package site.lonelyman.dogart.api.handler;
 import cn.dev33.satoken.exception.SaTokenException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
 import site.lonelyman.dogart.api.model.Result;
 
 /**
@@ -15,6 +16,7 @@ import site.lonelyman.dogart.api.model.Result;
  */
 
 @ControllerAdvice
+@ResponseBody
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = SaTokenException.class)
