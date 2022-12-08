@@ -3,13 +3,12 @@ package site.lonelyman.dogart.api.service.impl;
 import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import site.lonelyman.dogart.api.entity.Diary;
+import org.springframework.stereotype.Service;
 import site.lonelyman.dogart.api.entity.Words;
 import site.lonelyman.dogart.api.mapper.WordsMapper;
 import site.lonelyman.dogart.api.model.req.WordsPostReq;
 import site.lonelyman.dogart.api.model.vo.WordsVo;
 import site.lonelyman.dogart.api.service.WordsService;
-import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.Date;

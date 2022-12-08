@@ -1,7 +1,7 @@
 package site.lonelyman.dogart.api.controller.admin;
 
-import cn.dev33.satoken.annotation.SaCheckLogin;
 import org.springframework.web.bind.annotation.*;
+import site.lonelyman.dogart.api.annotation.LoginCheck;
 import site.lonelyman.dogart.api.entity.Diary;
 import site.lonelyman.dogart.api.model.Result;
 import site.lonelyman.dogart.api.service.DiaryService;
@@ -19,7 +19,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("admin/diary")
-@SaCheckLogin
+@LoginCheck
 public class DiaryAdminController {
     @Resource
     private DiaryService diaryService;

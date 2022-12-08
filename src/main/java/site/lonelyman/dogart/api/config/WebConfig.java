@@ -2,7 +2,11 @@ package site.lonelyman.dogart.api.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import site.lonelyman.dogart.api.interceptor.LoginCheckInterceptor;
+
+import javax.annotation.Resource;
 
 /**
  * <p>
@@ -13,7 +17,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  * @since 2022/12/8
  */
 @Configuration
-public class WebConfig extends WebMvcConfigurerAdapter {
+public class WebConfig implements WebMvcConfigurer {
+    @Resource
+    private LoginCheckInterceptor loginCheckInterceptor;
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
@@ -23,5 +29,10 @@ public class WebConfig extends WebMvcConfigurerAdapter {
                 .exposedHeaders("*")
                 .allowCredentials(false)
                 .maxAge(72000L);
+    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(loginCheckInterceptor).addPathPatterns("/admin/**");
     }
 }
