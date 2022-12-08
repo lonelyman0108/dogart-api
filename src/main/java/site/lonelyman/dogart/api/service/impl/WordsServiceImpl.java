@@ -3,6 +3,7 @@ package site.lonelyman.dogart.api.service.impl;
 import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import site.lonelyman.dogart.api.entity.Diary;
 import site.lonelyman.dogart.api.entity.Words;
 import site.lonelyman.dogart.api.mapper.WordsMapper;
 import site.lonelyman.dogart.api.model.req.WordsPostReq;
@@ -47,6 +48,19 @@ public class WordsServiceImpl extends ServiceImpl<WordsMapper, Words>
                         .lambda()
                         .eq(Words::getId, id)
                         .setSql("lick_count = lick_count + 1")
+        );
+    }
+
+    @Override
+    public void changeFlag(Integer id, Integer flag) {
+        if (flag != 0 && flag != 1) {
+            throw new RuntimeException("输入状态非法");
+        }
+        this.update(
+                new UpdateWrapper<Words>()
+                        .lambda()
+                        .set(Words::getFlag, flag)
+                        .eq(Words::getId, id)
         );
     }
 }

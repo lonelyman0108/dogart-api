@@ -17,4 +17,6 @@ public interface DiaryService extends IService<Diary> {
     void postDiary(DiaryPostReq req);
 
     void lickDiary(Integer id);
+
+    void changeFlag(Integer id, Integer flag);
 }

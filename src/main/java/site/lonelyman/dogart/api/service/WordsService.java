@@ -17,4 +17,6 @@ public interface WordsService extends IService<Words> {
     void postWords(WordsPostReq req);
 
     void lickWords(Integer id);
+
+    void changeFlag(Integer id, Integer flag);
 }

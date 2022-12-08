@@ -48,6 +48,19 @@ public class DiaryServiceImpl extends ServiceImpl<DiaryMapper, Diary>
                         .setSql("lick_count = lick_count + 1")
         );
     }
+
+    @Override
+    public void changeFlag(Integer id, Integer flag) {
+        if (flag != 0 && flag != 1) {
+            throw new RuntimeException("输入状态非法");
+        }
+        this.update(
+                new UpdateWrapper<Diary>()
+                        .lambda()
+                        .set(Diary::getFlag, flag)
+                        .eq(Diary::getId, id)
+        );
+    }
 }
 
 
