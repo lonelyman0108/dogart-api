@@ -5,6 +5,7 @@ import cn.hutool.jwt.JWT;
 import cn.hutool.jwt.JWTUtil;
 import cn.hutool.jwt.JWTValidator;
 import org.springframework.context.annotation.DependsOn;
+import org.springframework.stereotype.Component;
 import site.lonelyman.dogart.api.config.JwtConfig;
 
 import javax.annotation.PostConstruct;
@@ -24,6 +25,7 @@ import java.util.Map;
  */
 
 @DependsOn("jwtConfig")
+@Component
 public class JwtUtil {
     @Resource
     private JwtConfig jwtConfig;
@@ -37,15 +39,15 @@ public class JwtUtil {
     public static String createToken(Map<String, Object> payloadMap) {
         return JWT.create()
                 .addPayloads(payloadMap)
-                .setKey(config.secret.getBytes(StandardCharsets.UTF_8))
+                .setKey(config.getSecret().getBytes(StandardCharsets.UTF_8))
                 .setIssuedAt(new Date())
-                .setExpiresAt(new Date(System.currentTimeMillis() + config.expiration * 1000))
+                .setExpiresAt(new Date(System.currentTimeMillis() + config.getExpiration() * 1000))
                 .sign();
     }
 
     public static boolean verify(String token) {
         boolean result = JWT.of(token)
-                .setKey(config.secret.getBytes(StandardCharsets.UTF_8))
+                .setKey(config.getSecret().getBytes(StandardCharsets.UTF_8))
                 .verify();
         if (result) {
             try {
