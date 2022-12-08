@@ -14,6 +14,8 @@ import lombok.Data;
 @Data
 public class WordsVo {
 
+    private Integer id;
+
     private String content;
 
     private Integer lickCount;

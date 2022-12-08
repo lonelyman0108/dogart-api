@@ -31,7 +31,7 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
                 && !method.isAnnotationPresent(LoginCheck.class)) {
             return true;
         }
-        String token = request.getHeader("token");
+        String token = request.getHeader("Authorization");
         if (CharSequenceUtil.isBlank(token) || !JwtUtil.verify(token)) {
             throw new RuntimeException("");
         }

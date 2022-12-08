@@ -52,7 +52,7 @@ public class WordsServiceImpl extends ServiceImpl<WordsMapper, Words>
 
     @Override
     public void changeFlag(Integer id, Integer flag) {
-        if (flag != 0 && flag != 1) {
+        if (flag != 0 && flag != 1 && flag != 2) {
             throw new RuntimeException("输入状态非法");
         }
         this.update(

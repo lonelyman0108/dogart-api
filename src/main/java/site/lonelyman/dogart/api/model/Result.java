@@ -13,20 +13,20 @@ import lombok.Data;
 
 @Data
 public class Result<T> {
-    private Integer status;
+    private Integer code;
 
     private String msg;
 
     private T data;
 
-    public Result(Integer status, String msg, T data) {
-        this.status = status;
+    public Result(Integer code, String msg, T data) {
+        this.code = code;
         this.msg = msg;
         this.data = data;
     }
 
-    public Result(Integer status, String msg) {
-        this.status = status;
+    public Result(Integer code, String msg) {
+        this.code = code;
         this.msg = msg;
         this.data = null;
     }
