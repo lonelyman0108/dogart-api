@@ -1,5 +1,6 @@
 package site.lonelyman.dogart.api.controller.admin;
 
+import cn.dev33.satoken.annotation.SaCheckLogin;
 import org.springframework.web.bind.annotation.*;
 import site.lonelyman.dogart.api.entity.Words;
 import site.lonelyman.dogart.api.model.Result;
@@ -18,6 +19,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("admin/words")
+@SaCheckLogin
 public class WordsAdminController {
     @Resource
     private WordsService wordsService;
@@ -29,7 +31,7 @@ public class WordsAdminController {
 
     @PostMapping("changeFlag")
     public Result<Object> changeFlag(@RequestParam("id") Integer id, @RequestParam("flag") Integer flag) {
-        wordsService.changeFlag(id,flag);
+        wordsService.changeFlag(id, flag);
         return Result.ok();
     }
 }

@@ -15,3 +15,10 @@ spring:
       maxWait: 60000
       timeBetweenEvictionRunsMillis: 60000
       minEvictableIdleTimeMillis: 300000
+sa-token:
+  token-name: dogart
+  timeout: 2592000
+  activity-timeout: -1
+  is-concurrent: false
+  is-share: false
+  token-style: uuid
