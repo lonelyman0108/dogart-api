@@ -34,4 +34,4 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: lonelyman/dogart-api:latest
+        tags: lonelyman0108/dogart-api:latest
