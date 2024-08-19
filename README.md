@@ -10,4 +10,4 @@
 前端项目：https://github.com/lonelyman0108/dogart
 
 ## 部署
-直接运行，访问`localhost:3000`即可
+直接运行，访问`localhost:8080`即可
