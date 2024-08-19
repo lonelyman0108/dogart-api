@@ -1,8 +1,10 @@
 package site.lonelyman.dogart.api.handler;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+import site.lonelyman.dogart.api.exception.AuthenticationFailedException;
 import site.lonelyman.dogart.api.model.Result;
 
 /**
@@ -16,7 +18,12 @@ import site.lonelyman.dogart.api.model.Result;
 
 @ControllerAdvice
 @ResponseBody
+@Slf4j
 public class GlobalExceptionHandler {
+    @ExceptionHandler(value = AuthenticationFailedException.class)
+    public Result<Object> authenticationFailedExceptionHandler(AuthenticationFailedException e) {
+        return Result.error(401, e.getMessage());
+    }
     @ExceptionHandler(value = RuntimeException.class)
     public Result<Object> runtimeExceptionHandler(RuntimeException e) {
         return Result.error(e.getMessage());

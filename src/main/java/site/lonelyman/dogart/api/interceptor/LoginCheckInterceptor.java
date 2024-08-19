@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import site.lonelyman.dogart.api.annotation.LoginCheck;
+import site.lonelyman.dogart.api.exception.AuthenticationFailedException;
 import site.lonelyman.dogart.api.util.JwtUtil;
 
 import javax.servlet.http.HttpServletRequest;
@@ -33,7 +34,7 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
         }
         String token = request.getHeader("Authorization");
         if (CharSequenceUtil.isBlank(token) || !JwtUtil.verify(token)) {
-            throw new RuntimeException("");
+            throw new AuthenticationFailedException();
         }
         return true;
     }
