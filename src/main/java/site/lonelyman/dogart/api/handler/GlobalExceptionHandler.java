@@ -5,6 +5,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+import site.lonelyman.dogart.api.exception.ApiException;
 import site.lonelyman.dogart.api.exception.AuthenticationFailedException;
 import site.lonelyman.dogart.api.model.Result;
 
@@ -27,6 +28,12 @@ public class GlobalExceptionHandler {
     public Result<Object> authenticationFailedExceptionHandler(AuthenticationFailedException e) {
         log.error(e.getMessage(), e);
         return Result.error(401, e.getMessage());
+    }
+
+    @ExceptionHandler(value = ApiException.class)
+    public Result<Object> apiExceptionHandler(ApiException e) {
+        log.error(e.getMessage(), e);
+        return Result.error(500, e.getMessage());
     }
 
     @ExceptionHandler(value = MethodArgumentNotValidException.class)

@@ -1,5 +1,6 @@
 package site.lonelyman.dogart.api.service;
 
+import site.lonelyman.dogart.api.constant.ContentFlagEnum;
 import site.lonelyman.dogart.api.entity.Words;
 import com.baomidou.mybatisplus.extension.service.IService;
 import site.lonelyman.dogart.api.model.req.WordsPostReq;
@@ -18,5 +19,7 @@ public interface WordsService extends IService<Words> {
 
     void lickWords(Integer id);
 
-    void changeFlag(Integer id, Integer flag);
+    void changeFlag(Integer id, ContentFlagEnum flag);
+
+    Integer refreshWordsCache();
 }

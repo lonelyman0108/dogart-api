@@ -1,5 +1,6 @@
 package site.lonelyman.dogart.api.service;
 
+import site.lonelyman.dogart.api.constant.ContentFlagEnum;
 import site.lonelyman.dogart.api.entity.Diary;
 import com.baomidou.mybatisplus.extension.service.IService;
 import site.lonelyman.dogart.api.model.req.DiaryPostReq;
@@ -18,5 +19,7 @@ public interface DiaryService extends IService<Diary> {
 
     void lickDiary(Integer id);
 
-    void changeFlag(Integer id, Integer flag);
+    void changeFlag(Integer id, ContentFlagEnum flag);
+
+    Integer refreshDiaryCache();
 }

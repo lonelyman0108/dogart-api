@@ -2,7 +2,9 @@ package site.lonelyman.dogart.api.controller.admin;
 
 import org.springframework.web.bind.annotation.*;
 import site.lonelyman.dogart.api.annotation.LoginCheck;
+import site.lonelyman.dogart.api.constant.ContentFlagEnum;
 import site.lonelyman.dogart.api.entity.Diary;
+import site.lonelyman.dogart.api.exception.ApiException;
 import site.lonelyman.dogart.api.model.Result;
 import site.lonelyman.dogart.api.service.DiaryService;
 
@@ -31,7 +33,11 @@ public class DiaryAdminController {
 
     @PostMapping("changeFlag")
     public Result<Object> changeFlag(@RequestParam("id") Integer id, @RequestParam("flag") Integer flag) {
-        diaryService.changeFlag(id, flag);
+        ContentFlagEnum flagEnum = ContentFlagEnum.getByValue(flag);
+        if (flagEnum == null) {
+            throw new ApiException("输入状态非法");
+        }
+        diaryService.changeFlag(id, flagEnum);
         return Result.ok();
     }
 
