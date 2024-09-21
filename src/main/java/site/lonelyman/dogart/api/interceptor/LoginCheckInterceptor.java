@@ -1,6 +1,7 @@
 package site.lonelyman.dogart.api.interceptor;
 
 import cn.hutool.core.text.CharSequenceUtil;
+import cn.hutool.jwt.JWTException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -33,7 +34,14 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
             return true;
         }
         String token = request.getHeader("Authorization");
-        if (CharSequenceUtil.isBlank(token) || !JwtUtil.verify(token)) {
+        if (CharSequenceUtil.isBlank(token)) {
+            throw new AuthenticationFailedException();
+        }
+        try {
+            if(!JwtUtil.verify(token)){
+                throw new AuthenticationFailedException();
+            }
+        }catch (JWTException e){
             throw new AuthenticationFailedException();
         }
         return true;

@@ -34,4 +34,10 @@ public class WordsAdminController {
         wordsService.changeFlag(id, flag);
         return Result.ok();
     }
+
+    @DeleteMapping()
+    public Result<Object> delete(@RequestParam("id") Integer id) {
+        wordsService.removeById(id);
+        return Result.ok();
+    }
 }

@@ -34,4 +34,10 @@ public class DiaryAdminController {
         diaryService.changeFlag(id, flag);
         return Result.ok();
     }
+
+    @DeleteMapping()
+    public Result<Object> delete(@RequestParam("id") Integer id) {
+        diaryService.removeById(id);
+        return Result.ok();
+    }
 }

@@ -22,15 +22,18 @@ import site.lonelyman.dogart.api.model.Result;
 public class GlobalExceptionHandler {
     @ExceptionHandler(value = AuthenticationFailedException.class)
     public Result<Object> authenticationFailedExceptionHandler(AuthenticationFailedException e) {
+        log.error(e.getMessage(), e);
         return Result.error(401, e.getMessage());
     }
     @ExceptionHandler(value = RuntimeException.class)
     public Result<Object> runtimeExceptionHandler(RuntimeException e) {
+        log.error(e.getMessage(), e);
         return Result.error(e.getMessage());
     }
 
     @ExceptionHandler(value = Exception.class)
     public Result<Object> exceptionHandler(Exception e) {
+        log.error(e.getMessage(), e);
         return Result.error("未知异常");
     }
 }
