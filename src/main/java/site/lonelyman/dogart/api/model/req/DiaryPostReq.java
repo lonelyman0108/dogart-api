@@ -2,6 +2,8 @@ package site.lonelyman.dogart.api.model.req;
 
 import lombok.Data;
 
+import javax.validation.constraints.NotBlank;
+
 /**
  * <p>
  *
@@ -14,6 +16,7 @@ import lombok.Data;
 @Data
 public class DiaryPostReq {
 
+    @NotBlank(message = "内容不能为空")
     private String content;
 
 }

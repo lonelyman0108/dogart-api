@@ -1,11 +1,14 @@
 package site.lonelyman.dogart.api.handler;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import site.lonelyman.dogart.api.exception.AuthenticationFailedException;
 import site.lonelyman.dogart.api.model.Result;
+
+import java.util.Objects;
 
 /**
  * <p>
@@ -25,6 +28,13 @@ public class GlobalExceptionHandler {
         log.error(e.getMessage(), e);
         return Result.error(401, e.getMessage());
     }
+
+    @ExceptionHandler(value = MethodArgumentNotValidException.class)
+    public Result<Object> methodArgumentNotValidExceptionHandler(MethodArgumentNotValidException e) {
+        log.error(e.getMessage(), e);
+        return Result.error(500, Objects.requireNonNull(e.getBindingResult().getFieldError()).getDefaultMessage());
+    }
+
     @ExceptionHandler(value = RuntimeException.class)
     public Result<Object> runtimeExceptionHandler(RuntimeException e) {
         log.error(e.getMessage(), e);

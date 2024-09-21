@@ -1,5 +1,6 @@
 package site.lonelyman.dogart.api.controller;
 
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import site.lonelyman.dogart.api.model.Result;
 import site.lonelyman.dogart.api.model.req.DiaryPostReq;
@@ -29,7 +30,7 @@ public class DiaryController {
     }
 
     @PostMapping()
-    public Result<Object> postDiary(@RequestBody DiaryPostReq req) {
+    public Result<Object> postDiary(@RequestBody @Validated DiaryPostReq req) {
         diaryService.postDiary(req);
         return Result.ok();
     }

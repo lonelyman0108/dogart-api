@@ -1,5 +1,6 @@
 package site.lonelyman.dogart.api.controller;
 
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import site.lonelyman.dogart.api.model.Result;
 import site.lonelyman.dogart.api.model.req.WordsPostReq;
@@ -29,7 +30,7 @@ public class WordsController {
     }
 
     @PostMapping()
-    public Result<Object> postWords(@RequestBody WordsPostReq req) {
+    public Result<Object> postWords(@RequestBody @Validated WordsPostReq req) {
         wordsService.postWords(req);
         return Result.ok();
     }
