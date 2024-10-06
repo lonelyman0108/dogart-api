@@ -2,8 +2,8 @@ name: Build and Push To Docker Hub
 
 on:
   push:
-    branches:
-      - main
+    tags:
+      - '*'
 
 jobs:
   build-and-deploy:
@@ -34,4 +34,6 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: lonelyman0108/dogart-api:latest
+        tags: |
+          ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:latest
+          ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:${{ github.ref_name }}
