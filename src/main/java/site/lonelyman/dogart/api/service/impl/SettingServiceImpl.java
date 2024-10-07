@@ -44,10 +44,17 @@ public class SettingServiceImpl extends ServiceImpl<SettingMapper, Setting> impl
 
     @Override
     public Setting getSettingOption(SettingOptionEnum option) {
-        return this.getOne(
+        Setting setting = this.getOne(
                 new LambdaQueryWrapper<Setting>()
                         .eq(Setting::getType, option.getType().getId())
                         .eq(Setting::getOptionName, option.getName())
         );
+        if (setting == null) {
+            setting = new Setting();
+            setting.setType(option.getType().getId());
+            setting.setOptionName(option.getName());
+            setting.setData(JSONUtil.toJsonStr(option.getFormItems()));
+        }
+        return setting;
     }
 }

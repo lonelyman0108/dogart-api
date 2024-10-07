@@ -26,7 +26,7 @@ public enum SettingOptionEnum {
                             .name("启用内容审核服务")
                             .desc("开启后可以对投稿进行内容安全审核，审核后会记录审核结果")
                             .selects(Arrays.asList("关闭", "开启"))
-                            .defaultValue(1)
+                            .defaultValue("关闭")
                             .build(),
                     SettingOptionFormSelectItem.builder()
                             .name("内容审核API提供商")
