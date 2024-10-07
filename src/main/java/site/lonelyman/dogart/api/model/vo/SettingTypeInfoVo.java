@@ -13,7 +13,6 @@ import lombok.Data;
 
 @Data
 public class SettingTypeInfoVo {
-    private Integer id;
     private String name;
     private String desc;
 }

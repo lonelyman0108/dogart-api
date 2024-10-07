@@ -36,4 +36,13 @@ public enum SettingTypeEnum {
         return null;
     }
 
+    public static SettingTypeEnum getByName(String name) {
+        for (SettingTypeEnum value : SettingTypeEnum.values()) {
+            if (value.getName().equals(name)) {
+                return value;
+            }
+        }
+        return null;
+    }
+
 }

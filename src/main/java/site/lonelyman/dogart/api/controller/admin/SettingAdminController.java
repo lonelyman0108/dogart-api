@@ -33,12 +33,11 @@ public class SettingAdminController {
     @Resource
     private SettingService settingService;
 
-    @GetMapping("listTypes")
+    @GetMapping("types")
     public Result<List<SettingTypeInfoVo>> listTypes() {
         List<SettingTypeInfoVo> vos = Arrays.stream(SettingTypeEnum.values())
                 .map(settingTypeEnum -> {
                             SettingTypeInfoVo vo = new SettingTypeInfoVo();
-                            vo.setId(settingTypeEnum.getId());
                             vo.setName(settingTypeEnum.getName());
                             vo.setDesc(settingTypeEnum.getDesc());
                             return vo;
@@ -50,9 +49,9 @@ public class SettingAdminController {
         return Result.ok(vos);
     }
 
-    @GetMapping("listOptions")
-    public Result<List<SettingOptionInfoVo>> listOptionsByTypeId(@RequestParam("typeId") Integer typeId) {
-        SettingTypeEnum typeEnum = SettingTypeEnum.getById(typeId);
+    @GetMapping("options")
+    public Result<List<SettingOptionInfoVo>> listOptionsByTypeId(@RequestParam("typeName") String typeName) {
+        SettingTypeEnum typeEnum = SettingTypeEnum.getByName(typeName);
         if (typeEnum == null) {
             throw new ApiException("参数错误");
         }
@@ -68,7 +67,7 @@ public class SettingAdminController {
         return Result.ok(vos);
     }
 
-    @PostMapping("updateOption")
+    @PostMapping("option")
     public Result<Object> updateOption(@RequestBody SettingOptionUpdateReq req) {
         SettingOptionEnum optionEnum = SettingOptionEnum.getByName(req.getOptionName());
         if (optionEnum == null) {
@@ -78,7 +77,7 @@ public class SettingAdminController {
         return Result.ok();
     }
 
-    @GetMapping("getOptionForm")
+    @GetMapping("optionForm")
     public Result<List<Object>> getOptionForm(@RequestParam("optionName") String optionName) {
         SettingOptionEnum optionEnum = SettingOptionEnum.getByName(optionName);
         if (optionEnum == null) {
